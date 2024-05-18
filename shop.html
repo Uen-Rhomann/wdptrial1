@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scent Haven</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        header {
+            background-color: #f4f4f4;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: padding 0.3s ease-in-out;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.5em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s, background-color 0.3s, padding 0.3s;
+            padding: 5px 10px;
+        }
+
+        nav ul li a:hover {
+            color: #fff;
+            background-color: #333;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 120px 0 50px;
+        }
+
+        section h2 {
+            margin-top: 0;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .perfume-item {
+            width: 300px; /* Adjusted width */
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent background */
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .perfume-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .perfume-item img {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .quantity {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity input {
+            width: 50px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        /* Slider styles */
+        .slider-container {
+            width: 100%;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider {
+            display: flex;
+            animation: slide-animation 10s infinite;
+        }
+
+        .slide {
+            width: 100%;
+            height: 300px; /* Adjust height as needed */
+            flex-shrink: 0;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slide-animation {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(-100%); }
+            40% { transform: translateX(-200%); }
+            60% { transform: translateX(-300%); }
+            80% { transform: translateX(-400%); }
+            100% { transform: translateX(0); }
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .brand-gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .brand-logo {
+            width: 20%;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .brand-logo:hover {
+            transform: scale(1.05);
+        }
+
+        #personal-info-form {
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        #cart {
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        #cart h2 {
+            margin-top: 0;
+        }
+
+        #cart ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #cart ul li {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        #cart p {
+            text-align: right;
+        }
+
+        .cart-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>𝚂𝙲𝙴𝙽𝚃 𝙷𝙰𝚅𝙴𝙽</h1>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="location.reload()">Home</a></li>
+                    <li><a href="homepage.html">About Us</a></li>
+                    <li><a href="mailto:rhomannuen@gmail.com">Contact</a></li>
+                    <li><a href="#cart">Cart</a></li>
+                    <li><a href="#profile" id="profileLink">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="brand-gallery">
+        <div class="container">
+            <div class="brand-gallery">
+                <img src="image-removebg-preview (2).png" alt="YSL" class="brand-logo" onclick="scrollToSection('ysl'); return false;">
+
+                <img src="dior.png" alt="DIOR" class="brand-logo" onclick="scrollToSection('dior'); return false;">
+
+                <img src="ck-removebg-preview.png" alt="Calvin Klein" class="brand-logo" onclick="scrollToSection('calvin-klein'); return false;">
+
+                <img src="Jean-Paul-Gaultier-Logo.png" alt="Jean Paul Gaultier" class="brand-logo" onclick="scrollToSection('jean-paul-gaultier'); return false;">
+
+            </div>
+        </div>
+    </section>
+
+    <section id="dior">
+    <div class="container">
+        <h2>ＤＩＯＲ</h2>
+        <div class="gallery">
+            <div class="perfume-item" data-key="1">
+                <h3>Dior Sauvage</h3>
+                <img src="2272645.jpg" alt="Dior Sauvage">
+                <p>Description: A fresh and spicy fragrance for men.</p>
+                <p>Price: $75.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="2">
+                <h3>Dior Farenheit</h3>
+                <img src="Christian-Dior-Fahrenheit-100ml.jpg" alt="Dior Farenheit">
+                <p>Description: A warm and woody scent, combined with floral and spicy undertones.</p>
+                <p>Price: $80.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="3">
+                <h3>Miss Dior</h3>
+                <img src="Christian-Dior-Miss-Dior-Blooming-Bouquet-Eau-De-Toilette-1-7-Ounces_c3aa5a92-8fae-4d83-aa76-f02ed5b0d966_1.be808ab66d532816b708ba88fd163919.webp" alt="Miss Dior">
+                <p>Description: A romantic and elegant floral fragrance for women.</p>
+                <p>Price: $85.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="4">
+                <h3>Dior Homme Intense</h3>
+                <img src="diorhome.jpg" alt="Dior Homme Intense">
+                <p>Description: A sophisticated and sensual fragrance with notes of iris, amber, and leather, perfect for the modern man.</p>
+                <p>Price: $90.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="ysl">
+    <div class="container">
+        <h2>ＹＳＬ</h2>
+        <div class="gallery">
+            <div class="perfume-item" data-key="4">
+                <h3>YSL Black Opium</h3>
+                <img src="Yves-Saint-Laurent-Black-Opium-EDP-90ml.jpg" alt="YSL Black Opium">
+                <p>Description: A captivating and sensual fragrance for women.</p>
+                <p>Price: $90.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="5">
+                <h3>YSL Libre</h3>
+                <img src="yves-saint-laurent-007787ys_03.jpg" alt="YSL Libre">
+                <p>Description: A bold and floral scent, with a blend of lavender and orange blossom.</p>
+                <p>Price: $95.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="6">
+                <h3>YSL La Nuit de L'Homme</h3>
+                <img src="yves-saint-laurent-0563-0112492-2.webp" alt="YSL La Nuit de L'Homme">
+                <p>Description: A fresh, spicy and masculine fragrance.</p>
+                <p>Price: $85.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="7">
+                <h3>YSL Mon Paris</h3>
+                <img src="P_Yves_Saint_Laurent_YSL_Libre_Intense_1200x.webp" alt="YSL Mon Paris">
+                <p>Description: An intoxicating and passionate fragrance with notes of strawberry, raspberry, pear, and white peony, embodying the spirit of Parisian romance.</p>
+                <p>Price: $100.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   <section id="calvin-klein">
+    <div class="container">
+        <h2>ＣＡＬＶＩＮ ＫＬＥＩＮ</h2>
+        <div class="gallery">
+            <div class="perfume-item" data-key="7">
+                <h3>Calvin Klein Eternity</h3>
+                <img src="0030_calvin_klein-2890553.webp" alt="Calvin Klein Eternity">
+                <p>Description: A timeless and sophisticated scent for men.</p>
+                <p>Price: $70.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="8">
+                <h3>Calvin Klein Euphoria</h3>
+                <img src="s-l1200 (1).jpg" alt="Calvin Klein Euphoria">
+                <p>Description: A provocative and exotic fragrance for women.</p>
+                <p>Price: $75.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="9">
+                <h3>Calvin Klein One</h3>
+                <img src="Calvin-Klein-Ck-One-Eau-De-Toilette-Spray-Unisex-Perfume-3-4-Oz_ffb8c4d9-686f-46b0-8a7a-4f9994ef06e8_1.7aa56e5c88a2a44c35b9fe6810d8cdac.webp" alt="Calvin Klein One">
+                <p>Description: A clean and fresh unisex fragrance.</p>
+                <p>Price: $65.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="10">
+                <h3>Calvin Klein Obsession for Men</h3>
+                <img src="41MeIKS01OL.jpg" alt="Calvin Klein Obsession for Men">
+                <p>Description: A classic and intense fragrance with notes of bergamot, lavender, and amber, evoking a sense of passion and sensuality.</p>
+                <p>Price: $80.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+   <section id="jean-paul-gaultier">
+    <div class="container">
+        <h2>ＪＥＡＮ ＰＡＵＬ ＧＡＵＬＴＩＥＲ</h2>
+        <div class="gallery">
+            <div class="perfume-item" data-key="10">
+                <h3>Jean Paul Gaultier Le Male</h3>
+                <img src="lemale.webp" alt="Jean Paul Gaultier Le Male">
+                <p>Description: A bold and charismatic scent for men.</p>
+                <p>Price: $85.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="11">
+                <h3>Jean Paul Gaultier Classique</h3>
+                <img src="JPGClassique100ml_650x650.webp" alt="Jean Paul Gaultier Classique">
+                <p>Description: A sensual and feminine fragrance for women.</p>
+                <p>Price: $90.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="12">
+                <h3>Jean Paul Gaultier Scandal</h3>
+                <img src="scandal.webp" alt="Jean Paul Gaultier Scandal">
+                <p>Description: A delicious and elegant fragrance for women.</p>
+                <p>Price: $95.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+            <div class="perfume-item" data-key="13">
+                <h3>Jean Paul Gaultier Ultra Male</h3>
+                <img src="ultramale.jpg" alt="Jean Paul Gaultier Ultra Male">
+                <p>Description: An intense and seductive fragrance with notes of pear, cinnamon, and black vanilla, exuding masculinity and sensuality.</p>
+                <p>Price: $100.00</p>
+                <div class="quantity">
+                    <input type="number" class="count" min="1" value="1">
+                    <button class="add">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section id="cart">
+        <div class="container">
+            <h2>Cart</h2>
+            <ul></ul>
+            <p>Total Price: <span id="totalPrice">$0.00</span></p>
+            <div class="cart-buttons">
+                <button id="clear-cart">Clear Cart</button>
+                <button id="checkout">Checkout</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="profile">
+        <div class="container">
+            <h2>Profile</h2>
+            <form id="personal-info-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" required></textarea><br><br>
+                <label for="phone">Phone:</label>
+                <input type="tel" id="phone" name="phone" required><br><br>
+                <button type="submit">Save</button>
+            </form>
+            <div id="saved-info" style="display: none;">
+                <p>Name: <span id="saved-name"></span></p>
+                <p>Email: <span id="saved-email"></span></p>
+                <p>Address: <span id="saved-address"></span></p>
+                <p>Phone: <span id="saved-phone"></span></p>
+                <button id="edit-info">Edit</button>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script>
+ document.addEventListener('DOMContentLoaded', () => {
+    const cart = [];
+    const cartList = document.querySelector('#cart ul');
+    const totalPriceEl = document.getElementById('totalPrice');
+    let totalPrice = 0;
+
+    const addToCart = (item) => {
+        const key = item.dataset.key;
+        const name = item.querySelector('h3').textContent;
+        const price = parseFloat(item.querySelector('p:nth-of-type(2)').textContent.replace('Price: $', ''));
+        const quantity = parseInt(item.querySelector('.count').value);
+
+        const cartItem = { key, name, price, quantity };
+        cart.push(cartItem);
+
+        const listItem = document.createElement('li');
+        listItem.textContent = `${name} - $${price.toFixed(2)} x ${quantity}`;
+        cartList.appendChild(listItem);
+
+        totalPrice += price * quantity;
+        totalPriceEl.textContent = `$${totalPrice.toFixed(2)}`;
+    };
+
+    const clearCart = () => {
+        cart.length = 0;
+        cartList.innerHTML = '';
+        totalPrice = 0;
+        totalPriceEl.textContent = '$0.00';
+    };
+
+    const perfumes = document.querySelectorAll('.perfume-item .add');
+    perfumes.forEach((button) => {
+        button.addEventListener('click', (e) => {
+            const item = e.target.closest('.perfume-item');
+            addToCart(item);
+        });
+    });
+
+    document.getElementById('clear-cart').addEventListener('click', clearCart);
+
+    // Function to handle the checkout process
+    document.getElementById('checkout').addEventListener('click', () => {
+        // Here, you can implement the logic for the checkout process
+        // For example, you can send the cart data to a backend server to process the payment
+        // After processing the payment, you can display a success message or redirect the user to a confirmation page
+        // For now, let's simply log a message to the console
+        console.log('Checkout button clicked');
+    });
+
+    const form = document.getElementById('personal-info-form');
+    const savedInfo = document.getElementById('saved-info');
+    const savedName = document.getElementById('saved-name');
+    const savedEmail = document.getElementById('saved-email');
+    const savedAddress = document.getElementById('saved-address');
+    const savedPhone = document.getElementById('saved-phone');
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const formData = new FormData(form);
+        savedName.textContent = formData.get('name');
+        savedEmail.textContent = formData.get('email');
+        savedAddress.textContent = formData.get('address');
+        savedPhone.textContent = formData.get('phone');
+
+        form.style.display = 'none';
+        savedInfo.style.display = 'block';
+    });
+
+    document.getElementById('edit-info').addEventListener('click', () => {
+        form.style.display = 'block';
+        savedInfo.style.display = 'none';
+    });
+});
+
+function scrollToSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+document.getElementById('checkout').addEventListener('click', () => {
+    // Check if the profile information is filled out
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!name || !email || !address || !phone) {
+        // If any of the profile fields are empty, show an alert message
+        alert("Please fill out your profile information before checking out.");
+    } else {
+        // If all profile fields are filled out, proceed with the checkout process
+        // Calculate the total price
+        const totalPrice = document.getElementById('totalPrice').textContent;
+
+        // Display an alert with the total price when the Checkout button is clicked
+        alert(`Thank you for shopping with us! Your total purchase amount is ${totalPrice}`);
+
+        // Here, you can implement the logic for the checkout process
+        // For example, you can send the cart data to a backend server to process the payment
+        // After processing the payment, you can display a success message or redirect the user to a confirmation page
+        // For now, let's simply log a message to the console
+        console.log('Checkout button clicked');
+    }
+});
+    </script>
+</body>
+</html>

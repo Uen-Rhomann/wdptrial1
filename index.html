@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SCENT HAVEN</title>
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande',
+    'Lucida Sans', Arial, sans-serif;
+}
+
+body {
+  background-color: #ffffff;
+  color: #000000;
+  margin-top: 80px; 
+}
+
+nav {
+  height: 80px;
+  background: #000000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem calc((100vw - 1300px) / 2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000; 
+}
+
+.logo {
+  color: #ffffff;
+  font-size: 1.8rem;
+  font-weight: bold;
+  padding: 0 2rem;
+}
+
+.nav-items a {
+  text-decoration: none;
+  color: #ffffff;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+}
+
+.nav-items a:hover {
+  color: #000000;
+  background: #ffffff;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+
+.hero {
+  background: #f8f8f8;
+  padding: 3rem 0;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  color: #666666;
+}
+
+.hero button {
+  padding: 1rem 3rem;
+  font-size: 1rem;
+  border: none;
+  color: #ffffff;
+  background: #000000;
+  cursor: pointer;
+  border-radius: 50px;
+}
+
+.hero button:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.content {
+  padding: 2rem calc((100vw - 1300px) / 2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #000000;
+}
+
+.content p {
+  font-size: 1.2rem;
+  color: #666666;
+  max-width: 800px;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer {
+  background: #000000;
+  padding: 1rem 0;
+  text-align: center;
+  color: #ffffff;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+}
+
+.about-contact-container {
+  background-color: rgba(128, 128, 128, 0.3); /* Gray with 30% opacity */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.about-contact-container a {
+  color: #000000;
+}
+
+.about-contact-container a:hover {
+  color: #007bff; 
+}
+
+#brand-gallery {
+  background-color: #f8f8f8;
+  padding: 3rem 0;
+}
+
+.brand-gallery {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-logo {
+            width: 20%;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+.brand-logo:hover {
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero p {
+    font-size: 1.2rem;
+  }
+
+  .nav-items a {
+    padding: 0 1rem;
+  }
+}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">SCENT HAVEN</div>
+<div class="nav-items">
+  
+  <a href="#about">About Us</a>
+  <a href="#contact">Contact Us</a>
+</div>
+</nav>
+<section class="hero" id="home">
+<h1>Welcome to SCENT HAVEN</h1>
+<p>Discover the finest perfume brands and fragrances.</p>
+<button>SHOP NOW!</button>
+</section>
+<section id="brand-gallery">
+  <div class="container">
+    <div class="brand-gallery">
+      <img src="image-removebg-preview (2).png" alt="YSL" class="brand-logo" onclick="scrollToSection('ysl')">
+      <img src="dior.png" alt="DIOR" class="brand-logo" onclick="scrollToSection('dior')">
+      <img src="ck-removebg-preview.png" alt="Calvin Klein" class="brand-logo" onclick="scrollToSection('calvin-klein')">
+      <img src="Jean-Paul-Gaultier-Logo.png" alt="Jean Paul Gaultier" class="brand-logo" onclick="scrollToSection('jean-paul-gaultier')">
+    </div>
+  </div>
+</section>
+<section class="content" id="about">
+<div class="about-contact-container">
+<h2>About Us</h2>
+<p>
+  SCENT HAVEN is your premier destination for discovering the most exquisite and luxurious perfume brands. Our curated collection features a diverse range of scents that cater to every preference and occasion. <br> <br> At Scent Haven, we believe that a perfume is much more than just a scent; it’s a journey, an emotion, and a memory captured in a bottle. Founded with a passion for the art of fragrance, Scent Haven is dedicated to crafting exquisite perfumes that resonate with the soul and elevate everyday moments. </br> </br>
+</p>
+</div>
+</section>
+<section class="content" id="contact">
+<div class="about-contact-container">
+<h2>Contact Us</h2>
+<p>
+  Have questions or need assistance? Reach out to us at <a href="mailto:rhomannuen@gmail.com">rhomannuen@gmail.com</a> or call us at 09951569935 (8-7000) We're here to help you find your perfect fragrance.
+</p>
+</div>
+</section>
+<footer class="footer">
+&copy; 2024 SCENT HAVEN. All rights reserved.
+</footer>
+<script>
+
+window.onscroll = function() {scrollFunction()};
+
+var navbar = document.querySelector("nav");
+var sticky = navbar
+
+function scrollFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky");
+  }
+}
+
+
+document.querySelector(".hero button").addEventListener("click", function() {
+ 
+  window.location.href = "shop.html";
+  
+  
+});
+</script>
+</body>
+</html>
